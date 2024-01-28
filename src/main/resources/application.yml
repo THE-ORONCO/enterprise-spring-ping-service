@@ -1,0 +1,84 @@
+springdoc:
+  show-actuator: true
+management:
+  info:
+    git:
+      mode: full
+    env:
+      enabled: true
+    os:
+      enabled: true
+    java:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - configprops
+          - flyway
+          - loggers
+          - integrationgraph
+          - metrics
+          - mappings
+          - beans
+          - env
+  endpoint:
+    configprops:
+      show-values: always
+      roles:
+        - ja-boi-tim
+        - admin
+        - bre
+  tracing:
+    sampling:
+      probability: 1.0
+
+  metrics:
+    tags:
+      region: de
+      flumbus: uffi
+
+  influx:
+    metrics:
+      export:
+        uri: http://localhost:8086
+        user-name: sa
+        password: password
+        bucket: bugged
+        org: birb-inc
+        token: token-please-update
+        enabled: true
+        auto-create-db: true
+
+spring:
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring:
+      jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+  liquibase:
+    driver-class-name: org.h2.Driver
+    password: password
+    user: sa
+    url: jdbc:h2:mem:mydb
+
+info:
+  exdra info:
+    was gab's heute zu essen: Nudl
+
+the:
+  oronco:
+    nested:
+      birb-mode: walking
+      birb-age: 420
+    what-is-this: 'ya boi tim'
+    yes: false
