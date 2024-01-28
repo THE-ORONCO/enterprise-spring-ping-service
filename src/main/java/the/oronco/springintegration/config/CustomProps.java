@@ -3,7 +3,6 @@ package the.oronco.springintegration.config;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.validation.annotation.Validated;
@@ -12,7 +11,8 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public record CustomProps(@DefaultValue("false") boolean yes,
                           @NotEmpty @DefaultValue("nothing") String whatIsThis,
-                          @Valid @DefaultValue Nested nested) {
+                          @Valid @DefaultValue Nested nested,
+                          @NotEmpty @DefaultValue("pong") String pongMessage) {
 
     private enum BirbMode {
         FLYING,

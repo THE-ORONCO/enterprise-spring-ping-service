@@ -5,7 +5,7 @@
   that the concrete definitions can be customer specific
 - find a way to visualize integration flow
 - use [gateway interfaces](https://docs.spring.io/spring-integration/reference/gateway.html) to abstract out the outflow of messages
-
+- translation of pong message
 
 - find out if Spring Cloud Data Flow does something similar or what it is used for instead
 

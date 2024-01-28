@@ -21,6 +21,6 @@ public class PingController {
     @Timed(extraTags = { "auf-dem", "baum"})
     public String pong() {
         eventPublisher.publishEvent(new PingEvent(this, ZonedDateTime.now()));
-        return "pong";
+        return customProps.pongMessage();
     }
 }
