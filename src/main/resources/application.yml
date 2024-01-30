@@ -41,6 +41,9 @@ management:
       region: de
       flumbus: uffi
 
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411
   influx:
     metrics:
       export:
@@ -54,6 +57,8 @@ management:
         auto-create-db: true
 
 spring:
+  application:
+    name: 'enterprise-spring-ping-service'
   h2:
     console.enabled: true
   datasource:
@@ -71,10 +76,24 @@ info:
   exdra info:
     was gab's heute zu essen: Nudl
 
+
 the:
   oronco:
     nested:
-      birb-mode: walking
+      birb-mode: sleeping
       birb-age: 420
     what-is-this: 'ya boi tim'
     yes: false
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+# see https://github.com/micrometer-metrics/tracing/wiki/Spring-Cloud-Sleuth-3.1-Migration-Guide
+# about what happened to sleuth
+# opentelemetry -> telegraf
+otel:
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317
+      protocol: grpc

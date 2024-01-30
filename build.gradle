@@ -43,13 +43,18 @@ dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     // tracing via open telemetry
-//    implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
-//    implementation("io.opentelemetry.instrumentation:opentelemetry-jdbc")
+    implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter")
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp'
+    // micrometer -> opentelemetry
     implementation 'io.micrometer:micrometer-tracing-bridge-otel'
-    implementation 'io.opentelemetry:opentelemetry-exporter-zipkin'
-
-    // metrics to influx
+    // micrometer.metrics -> influx
     implementation 'io.micrometer:micrometer-registry-influx'
+    // opentelemetry -> zipkin
+    implementation("io.opentelemetry:opentelemetry-exporter-zipkin")
+    // adds @WithSpan instrumentation
+    implementation 'io.opentelemetry:opentelemetry-extension-annotations'
+
+
 
     // liquibase
     implementation 'org.liquibase:liquibase-core'
@@ -66,6 +71,7 @@ dependencies {
 
 dependencyManagement {
     imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2023.0.0")
         mavenBom("io.opentelemetry:opentelemetry-bom:1.34.1")
         mavenBom("io.opentelemetry.instrumentation:opentelemetry-instrumentation-bom-alpha:2.0.0-alpha")
     }
